@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chan Attar Collection | Pure & Royal Alcohol-Free Perfume Oils</title>
+  <meta name="description" content="Discover pure, alcohol-free luxury Arabian and Indian attars. 100% concentrated perfume oils with 24h+ lasting fragrance. Direct WhatsApp Ordering.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <span>✨ Free Express Delivery on orders above ₹999 | 100% Pure & Alcohol-Free Ittar ✨</span>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container nav-container">
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo">
+        <h1>Chan Attar</h1>
+        <span>Collection &bull; Royal Fragrance</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#products">Collection</a></li>
+        <li><a href="#gallery">Delivered Orders</a></li>
+        <li><a href="#about">Our Purity</a></li>
+        <li><a href="#contact">Contact & Feedback</a></li>
+      </ul>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <!-- Direct WhatsApp Chat -->
+        <a href="javascript:void(0)" onclick="openWhatsAppDirect()" class="icon-btn" title="Chat on WhatsApp">
+          <i class="fab fa-whatsapp" style="font-size: 1.3rem; color: #25D366;"></i>
+        </a>
+
+        <!-- Cart Trigger -->
+        <button class="cart-btn" onclick="toggleCart(true)" id="cartBtn">
+          <i class="fas fa-shopping-bag"></i>
+          <span>Cart</span>
+          <span class="badge-count" id="cartBadge">0</span>
+        </button>
+
+        <!-- Admin Portal Link -->
+        <a href="admin.html" class="admin-nav-btn" title="Admin Control Panel">
+          <i class="fas fa-user-shield"></i>
+          <span>Admin</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <div class="hero-tag">
+          <i class="fas fa-crown"></i> Handcrafted Royal Attar
+        </div>
+        <h2 class="hero-title">Experience Pure Luxury in <em>Every Drop</em></h2>
+        <p class="hero-desc">
+          Welcome to <strong>Chan Attar Collection</strong>. Authentic non-alcoholic concentrated perfume oils distilled from natural botanicals, pure oudh, rich amber, and fresh Kashmiri roses. 
+        </p>
+        <div class="hero-ctas">
+          <a href="#products" class="btn-primary">
+            <span>Explore 12 Blends</span>
+            <i class="fas fa-arrow-down"></i>
+          </a>
+          <button onclick="openWhatsAppDirect()" class="btn-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span>Order on WhatsApp</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Hero Sliding Showcase -->
+      <div class="hero-slider-wrap">
+        <div class="hero-slider" id="heroSlider">
+          <div class="hero-slide">
+            <img src="images/oudh.jpg" alt="Royal Oudh Attar">
+            <div class="slide-caption">
+              <h4>Royal Oudh Al-Maliki</h4>
+              <p>Aged Cambodian Agarwood & Golden Amber</p>
+            </div>
+          </div>
+          <div class="hero-slide">
+            <img src="images/rose.jpg" alt="Rooh Gulab Attar">
+            <div class="slide-caption">
+              <h4>Rooh Gulab Khas</h4>
+              <p>Hydro-distilled pure organic Indian Damask rose</p>
+            </div>
+          </div>
+          <div class="hero-slide">
+            <img src="images/musk.jpg" alt="Kasturi Deer Musk">
+            <div class="slide-caption">
+              <h4>Kasturi White Musk</h4>
+              <p>Velvety soft & long-lasting projection</p>
+            </div>
+          </div>
+        </div>
+        <div class="slider-dots" id="sliderDots">
+          <span class="slider-dot active" onclick="goToSlide(0)"></span>
+          <span class="slider-dot" onclick="goToSlide(1)"></span>
+          <span class="slider-dot" onclick="goToSlide(2)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Strip -->
+  <section class="features-strip" id="about">
+    <div class="container features-grid">
+      <div class="feature-box">
+        <div class="feature-icon"><i class="fas fa-tint"></i></div>
+        <div class="feature-info">
+          <h4>100% Alcohol-Free</h4>
+          <p>Pure oil extrait, safe for prayer & sensitive skin</p>
+        </div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon"><i class="fas fa-hourglass-half"></i></div>
+        <div class="feature-info">
+          <h4>24+ Hours Longevity</h4>
+          <p>Unmatched projection and rich lingering sillage</p>
+        </div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon"><i class="fab fa-whatsapp"></i></div>
+        <div class="feature-info">
+          <h4>Instant WhatsApp Order</h4>
+          <p>Fast 1-click checkout with admin confirmation</p>
+        </div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="feature-info">
+          <h4>Damage-Proof Packing</h4>
+          <p>Luxury glass bottle with velvet travel pouch</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products-section" id="products">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Exquisite Creations</span>
+        <h2 class="section-title">The Royal 12 Signature Collection</h2>
+        <div class="section-divider"></div>
+        <p style="margin-top: 12px; color: var(--text-secondary); max-width: 600px; margin-inline: auto;">
+          Alternating showcase of our most requested concentrated attar formulations. Choose your preferred bottle size and place an order directly or add to cart.
+        </p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-btn active" onclick="filterProducts('all', this)">All Attars (12)</button>
+        <button class="filter-btn" onclick="filterProducts('oudh', this)">Oudh & Woody</button>
+        <button class="filter-btn" onclick="filterProducts('rose', this)">Rose & Floral</button>
+        <button class="filter-btn" onclick="filterProducts('musk', this)">Musk & Amber</button>
+        <button class="filter-btn" onclick="filterProducts('fresh', this)">Fresh & Spicy</button>
+      </div>
+
+      <!-- Dynamic Alternating Product Showcase -->
+      <div class="product-showcase-grid" id="productGrid">
+        <!-- Rendered by JavaScript dynamically from database/localStorage -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Delivered Products & Customer Unboxing Gallery -->
+  <section class="delivery-gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Delivered With Care</span>
+        <h2 class="section-title">Customer Deliveries & Unboxings</h2>
+        <div class="section-divider"></div>
+        <p style="margin-top: 10px; color: var(--text-secondary);">Real parcels delivered across India to our cherished attar connoisseurs.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img src="images/oudh.jpg" alt="Delivered Oudh Parcel">
+          <div class="gallery-card-body">
+            <h4>Delivered to Mumbai, MH</h4>
+            <p>"Royal Oudh Al-Maliki arrived in safe velvet packaging. Smell lasted 2 days on clothes!"</p>
+            <div class="customer-verified"><i class="fas fa-check-circle"></i> Verified Buyer (Rashid K.)</div>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <img src="images/rose.jpg" alt="Delivered Rooh Gulab">
+          <div class="gallery-card-body">
+            <h4>Delivered to Lucknow, UP</h4>
+            <p>"Authentic natural rose fragrance, completely non-alcoholic. Highly impressed."</p>
+            <div class="customer-verified"><i class="fas fa-check-circle"></i> Verified Buyer (Amina S.)</div>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <img src="images/musk.jpg" alt="Delivered White Musk">
+          <div class="gallery-card-body">
+            <h4>Delivered to Hyderabad, TS</h4>
+            <p>"Kasturi Musk is very calming. Loved the WhatsApp ordering convenience."</p>
+            <div class="customer-verified"><i class="fas fa-check-circle"></i> Verified Buyer (Farhan Q.)</div>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <img src="images/oudh.jpg" alt="Delivered Attar Box">
+          <div class="gallery-card-body">
+            <h4>Delivered to Delhi NCR</h4>
+            <p>"Ordered 3 bottles combo. Fast dispatch and excellent customer support on WhatsApp."</p>
+            <div class="customer-verified"><i class="fas fa-check-circle"></i> Verified Buyer (Vikram M.)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact, Feedback & Shop Details -->
+  <section class="contact-feedback-section" id="contact">
+    <div class="container split-layout">
+      <!-- Shop Details & Socials -->
+      <div class="info-card">
+        <h3>Chan Attar Collection</h3>
+        <p class="lead">Distributors of artisanal pure concentrated perfume oils and royal oriental fragrances.</p>
+        
+        <ul class="contact-detail-list">
+          <li class="contact-item">
+            <div class="contact-icon-bubble"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-item-info">
+              <h5>Store Address</h5>
+              <p>Near Royal Market, Main Bazar, Mumbai - 400003, Maharashtra, India</p>
+            </div>
+          </li>
+          <li class="contact-item">
+            <div class="contact-icon-bubble"><i class="fab fa-whatsapp"></i></div>
+            <div class="contact-item-info">
+              <h5>WhatsApp Direct Order Line</h5>
+              <p id="displayWhatsApp">+91 98765 43210 (24x7 Customer Support)</p>
+            </div>
+          </li>
+          <li class="contact-item">
+            <div class="contact-icon-bubble"><i class="fas fa-clock"></i></div>
+            <div class="contact-item-info">
+              <h5>Dispatch & Shop Timings</h5>
+              <p>Mon - Sat: 10:00 AM - 9:00 PM | Sun: 11:00 AM - 6:00 PM</p>
+            </div>
+          </li>
+        </ul>
+
+        <h4>Connect On Social Media</h4>
+        <div class="social-links-row">
+          <a href="https://whatsapp.com" target="_blank" class="social-pill wa">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://instagram.com" target="_blank" class="social-pill ig">
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+          <a href="https://t.me" target="_blank" class="social-pill tg">
+            <i class="fab fa-telegram-plane"></i> Telegram
+          </a>
+        </div>
+      </div>
+
+      <!-- Feedback Form -->
+      <div class="info-card">
+        <h3>Customer Feedback & Inquiries</h3>
+        <p class="lead">Your suggestions help us craft the finest natural fragrances. Leave a review or ask a question.</p>
+        
+        <form class="feedback-form" id="feedbackForm" onsubmit="handleFeedbackSubmit(event)">
+          <div class="form-group">
+            <label for="fbName">Full Name *</label>
+            <input type="text" id="fbName" required placeholder="e.g. Mohd. Zaid">
+          </div>
+          <div class="form-group">
+            <label for="fbPhone">Phone / WhatsApp Number *</label>
+            <input type="tel" id="fbPhone" required placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group">
+            <label>Rate Your Experience</label>
+            <div class="rating-select" id="ratingStars">
+              <span class="star-rate selected" onclick="setRating(1)"><i class="fas fa-star"></i></span>
+              <span class="star-rate selected" onclick="setRating(2)"><i class="fas fa-star"></i></span>
+              <span class="star-rate selected" onclick="setRating(3)"><i class="fas fa-star"></i></span>
+              <span class="star-rate selected" onclick="setRating(4)"><i class="fas fa-star"></i></span>
+              <span class="star-rate selected" onclick="setRating(5)"><i class="fas fa-star"></i></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fbMessage">Feedback / Review / Product Request *</label>
+            <textarea id="fbMessage" rows="3" required placeholder="Tell us how you liked our attar or what scent you are looking for..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+            <i class="fas fa-paper-plane"></i> Submit Feedback
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h2>Chan Attar Collection</h2>
+        <p>Luxury pure alcohol-free attars, meticulously formulated to preserve classical oriental traditions with contemporary finesse.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#products">12 Attar Collection</a></li>
+          <li><a href="#gallery">Customer Unboxings</a></li>
+          <li><a href="#about">Why Alcohol-Free</a></li>
+          <li><a href="admin.html">Admin Portal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Fragrance Categories</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="filterProducts('oudh')">Agarwood & Oudh</a></li>
+          <li><a href="javascript:void(0)" onclick="filterProducts('rose')">Damascena Rose</a></li>
+          <li><a href="javascript:void(0)" onclick="filterProducts('musk')">Kasturi & Amber</a></li>
+          <li><a href="javascript:void(0)" onclick="filterProducts('fresh')">Fresh & Aqua Notes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Direct Contact</h4>
+        <p style="font-size: 0.85rem; color: #AAA; margin-bottom: 12px;">Need help choosing your signature scent? Message our perfumer directly on WhatsApp.</p>
+        <button onclick="openWhatsAppDirect()" class="btn-whatsapp" style="width: 100%; justify-content: center; font-size: 0.88rem; padding: 10px 16px;">
+          <i class="fab fa-whatsapp"></i> Chat With Perfumer
+        </button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        &copy; <span id="currentYear"></span> Chan Attar Collection. All Rights Reserved. Crafted with pure devotion.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-In Cart Drawer -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart(false)"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Your Fragrance Bag</h3>
+      <button class="close-btn" onclick="toggleCart(false)"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items-body" id="cartItemsList">
+      <!-- Dynamic Cart Items -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">₹0</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Shipping (India)</span>
+        <span id="cartShipping">₹0 (Free)</span>
+      </div>
+      <div class="cart-total-line">
+        <span>Grand Total</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+      <button class="btn-checkout-wa" onclick="openCheckoutModal()">
+        <i class="fab fa-whatsapp"></i>
+        <span>Checkout via WhatsApp</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Checkout Address & Order Modal -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Order Confirmation Details</h3>
+        <button class="close-btn" onclick="closeCheckoutModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
+          Enter your delivery details. When you press "Confirm & Send via WhatsApp", your order will be automatically logged in the admin panel and WhatsApp will open with your complete bill message.
+        </p>
+        <form id="checkoutForm" onsubmit="submitWhatsAppOrder(event)">
+          <label class="input-label" for="custName">Customer Full Name *</label>
+          <input type="text" id="custName" class="input-control" required placeholder="e.g. Tariq Khan">
+
+          <label class="input-label" for="custPhone">WhatsApp / Mobile Number *</label>
+          <input type="tel" id="custPhone" class="input-control" required placeholder="e.g. 9876543210">
+
+          <label class="input-label" for="custAddress">Complete Street Address *</label>
+          <textarea id="custAddress" class="input-control" rows="2" required placeholder="Flat/House No, Building, Landmark, Area"></textarea>
+
+          <div class="form-row">
+            <div>
+              <label class="input-label" for="custCity">City / State *</label>
+              <input type="text" id="custCity" class="input-control" required placeholder="e.g. Mumbai, MH">
+            </div>
+            <div>
+              <label class="input-label" for="custPincode">Pincode *</label>
+              <input type="text" id="custPincode" class="input-control" required placeholder="e.g. 400003">
+            </div>
+          </div>
+
+          <label class="input-label" for="payMode">Preferred Payment Method</label>
+          <select id="payMode" class="input-control">
+            <option value="UPI / Online Payment">UPI (GPay / PhonePe / Paytm)</option>
+            <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
+            <option value="Bank Transfer (NEFT/IMPS)">Bank Transfer</option>
+          </select>
+
+          <div style="background: var(--bg-tertiary); padding: 14px; border-radius: var(--radius-sm); margin-bottom: 16px; border: 1px dashed var(--accent-warm-beige);">
+            <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.05rem;">
+              <span>Total Payable:</span>
+              <span id="modalPayableAmount" style="color: var(--accent-chocolate);">₹0</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-checkout-wa" style="width: 100%; margin-top: 0;">
+            <i class="fab fa-whatsapp"></i> Confirm & Send Order to WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle" style="color: var(--accent-gold);"></i>
+    <span id="toastMsg">Product added to cart!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

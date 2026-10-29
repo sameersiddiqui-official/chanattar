@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Chan Attar Collection</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Admin specific sleek styling */
+    body {
+      background: #F4F1EA;
+    }
+    .admin-navbar {
+      background: #111111;
+      color: #FFF;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--accent-light-choc);
+    }
+    .admin-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: #FFF;
+      text-decoration: none;
+    }
+    .admin-logo span {
+      background: var(--accent-light-choc);
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      letter-spacing: 1px;
+    }
+    .admin-container {
+      max-width: 1300px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .login-box {
+      max-width: 420px;
+      margin: 90px auto;
+      background: #FFF;
+      padding: 36px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--accent-warm-beige);
+      text-align: center;
+    }
+    .login-box i.key-icon {
+      font-size: 2.8rem;
+      color: var(--accent-light-choc);
+      margin-bottom: 16px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .stat-card {
+      background: #FFF;
+      padding: 22px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border-left: 5px solid var(--accent-chocolate);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .stat-card.green { border-color: #2E7D32; }
+    .stat-card.blue { border-color: #0288D1; }
+    .stat-card.orange { border-color: #F57C00; }
+    .stat-val {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 4px;
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .stat-icon {
+      font-size: 2rem;
+      color: var(--accent-warm-beige);
+    }
+    
+    /* Admin Tabs */
+    .admin-tab-nav {
+      display: flex;
+      gap: 10px;
+      border-bottom: 2px solid var(--accent-warm-beige);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .admin-tab-btn {
+      background: transparent;
+      border: none;
+      padding: 12px 22px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .admin-tab-btn.active {
+      color: var(--accent-chocolate);
+      border-color: var(--accent-chocolate);
+      background: #FFF;
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
+    }
+    
+    .admin-panel-card {
+      background: #FFF;
+      padding: 28px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border: var(--border-light);
+      margin-bottom: 30px;
+    }
+
+    /* Tables */
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.88rem;
+    }
+    .custom-table th {
+      background: var(--bg-tertiary);
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 700;
+      color: var(--accent-chocolate);
+      border-bottom: 2px solid var(--accent-warm-beige);
+    }
+    .custom-table td {
+      padding: 14px;
+      border-bottom: 1px solid #EEE;
+      vertical-align: middle;
+    }
+    .custom-table tr:hover {
+      background: #FAF8F5;
+    }
+    .table-thumb {
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 1px solid var(--accent-warm-beige);
+    }
+
+    .badge-status {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-status.pending { background: #FFF3E0; color: #E65100; }
+    .badge-status.confirmed { background: #E1F5FE; color: #0277BD; }
+    .badge-status.shipped { background: #EDE7F6; color: #512DA8; }
+    .badge-status.delivered { background: #E8F5E9; color: #2E7D32; }
+
+    .action-btn-sm {
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .action-btn-edit { background: var(--accent-subtle); color: var(--accent-chocolate); }
+    .action-btn-edit:hover { background: var(--accent-light-choc); color: #FFF; }
+    .action-btn-wa { background: #25D366; color: #FFF; }
+    .action-btn-wa:hover { background: #1EBE5D; }
+
+    @media (max-width: 992px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .custom-table { display: block; overflow-x: auto; }
+    }
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Admin Top Bar -->
+  <header class="admin-navbar">
+    <a href="index.html" class="admin-logo">
+      <i class="fas fa-crown" style="color: var(--accent-gold);"></i>
+      <span>CHAN ATTAR</span>
+      <span style="background: #333; color: #FFF;">ADMIN CONTROL PANEL</span>
+    </a>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <a href="index.html" class="action-btn-sm" style="background: #333; color: #FFF;">
+        <i class="fas fa-external-link-alt"></i> View Live Website
+      </a>
+      <button id="logoutBtn" onclick="logoutAdmin()" class="action-btn-sm" style="background: #C62828; color: #FFF; display: none;">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </header>
+
+  <!-- Login Section (If not authenticated) -->
+  <div id="loginSection" class="login-box">
+    <i class="fas fa-lock key-icon"></i>
+    <h2 style="font-family: var(--font-serif); margin-bottom: 8px;">Admin Security Check</h2>
+    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+      Enter your Master PIN to manage products, change photos, stock, prices, and view customer orders.
+    </p>
+    <form onsubmit="handleAdminLogin(event)">
+      <div style="margin-bottom: 20px;">
+        <input type="password" id="adminPinInput" class="input-control" placeholder="Default PIN: 1234" required autofocus style="text-align: center; font-size: 1.4rem; letter-spacing: 6px;">
+      </div>
+      <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+        <i class="fas fa-unlock-alt"></i> Access Dashboard
+      </button>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 14px;">
+        Tip: Default PIN is <strong>1234</strong> (You can change it inside Settings).
+      </p>
+    </form>
+  </div>
+
+  <!-- Dashboard Main Content (Visible upon Login) -->
+  <main id="dashboardSection" class="admin-container" style="display: none;">
+    
+    <!-- Top Summary Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div>
+          <div class="stat-label">Total Customer Orders</div>
+          <div class="stat-val" id="statTotalOrders">0</div>
+        </div>
+        <i class="fas fa-shopping-cart stat-icon"></i>
+      </div>
+      <div class="stat-card green">
+        <div>
+          <div class="stat-label">Total Order Value</div>
+          <div class="stat-val" id="statRevenue">₹0</div>
+        </div>
+        <i class="fas fa-coins stat-icon" style="color: #A5D6A7;"></i>
+      </div>
+      <div class="stat-card blue">
+        <div>
+          <div class="stat-label">Active Attars in Catalog</div>
+          <div class="stat-val" id="statProducts">12</div>
+        </div>
+        <i class="fas fa-spray-can stat-icon" style="color: #90CAF9;"></i>
+      </div>
+      <div class="stat-card orange">
+        <div>
+          <div class="stat-label">Customer Reviews</div>
+          <div class="stat-val" id="statFeedbacks">0</div>
+        </div>
+        <i class="fas fa-comments stat-icon" style="color: #FFE082;"></i>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="admin-tab-nav">
+      <button class="admin-tab-btn active" onclick="switchTab('ordersTab', this)">
+        <i class="fas fa-list-alt"></i> Customer Orders Details
+      </button>
+      <button class="admin-tab-btn" onclick="switchTab('productsTab', this)">
+        <i class="fas fa-boxes"></i> Product & Stock Management
+      </button>
+      <button class="admin-tab-btn" onclick="switchTab('feedbackTab', this)">
+        <i class="fas fa-star"></i> Feedback & Reviews
+      </button>
+      <button class="admin-tab-btn" onclick="switchTab('settingsTab', this)">
+        <i class="fas fa-cog"></i> Settings & WhatsApp Config
+      </button>
+    </div>
+
+    <!-- TAB 1: CUSTOMER ORDERS (FULL DETAIL) -->
+    <section id="ordersTab" class="admin-panel-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 16px;">
+        <div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.4rem;">Customer Orders Database</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Real-time log of orders placed by customers along with their full delivery address & contact details.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button onclick="exportOrdersCSV()" class="action-btn-sm" style="background: #2E7D32; color: #FFF;">
+            <i class="fas fa-file-excel"></i> Export to Excel (CSV)
+          </button>
+          <button onclick="clearAllOrders()" class="action-btn-sm" style="background: #C62828; color: #FFF;">
+            <i class="fas fa-trash"></i> Clear Orders
+          </button>
+        </div>
+      </div>
+
+      <div id="ordersTableWrapper">
+        <table class="custom-table" id="ordersTable">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Date / Time</th>
+              <th>Customer Details</th>
+              <th>Address & Pincode</th>
+              <th>Ordered Attars</th>
+              <th>Total Amount</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 2: PRODUCT MANAGEMENT (Photo Change, Price Change, Stock Change) -->
+    <section id="productsTab" class="admin-panel-card" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 20px;">
+        <div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.4rem;">Attar Catalog & Inventory Control</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Change photos, modify 6ml/12ml prices, update stock quantity, and add new fragrance creations.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button onclick="openAddProductModal()" class="btn-primary" style="padding: 10px 20px; font-size: 0.88rem;">
+            <i class="fas fa-plus"></i> Add New Attar
+          </button>
+          <button onclick="resetDefaultProducts()" class="action-btn-sm" style="background: #EAE3D9; color: var(--accent-chocolate);">
+            <i class="fas fa-undo"></i> Reset to 12 Defaults
+          </button>
+        </div>
+      </div>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>Photo</th>
+            <th>Attar Name & Category</th>
+            <th>Notes & Accords</th>
+            <th>Price (6ml / 12ml)</th>
+            <th>Stock Status</th>
+            <th>Available Qty</th>
+            <th>Edit Action</th>
+          </tr>
+        </thead>
+        <tbody id="adminProductsBody">
+          <!-- Rendered by JS -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- TAB 3: CUSTOMER FEEDBACK -->
+    <section id="feedbackTab" class="admin-panel-card" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.4rem;">Customer Inquiries & Feedback</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Submissions from visitors on the store feedback form.</p>
+        </div>
+      </div>
+      <div id="feedbackListContainer">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- TAB 4: SETTINGS & WHATSAPP CONFIG -->
+    <section id="settingsTab" class="admin-panel-card" style="display: none;">
+      <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 8px;">Store & WhatsApp Configuration</h3>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">Configure the WhatsApp number where customer orders are sent, and update your admin PIN.</p>
+
+      <form onsubmit="handleSettingsSave(event)" style="max-width: 550px;">
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="input-label" for="settingWhatsApp">Admin WhatsApp Number (With Country Code)</label>
+          <input type="text" id="settingWhatsApp" class="input-control" placeholder="e.g. 919876543210" required>
+          <small style="color: var(--text-muted); font-size: 0.78rem;">Orders from the website will be sent directly to this WhatsApp number.</small>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="input-label" for="settingNewPin">Change Admin PIN (4-6 digits)</label>
+          <input type="password" id="settingNewPin" class="input-control" placeholder="Enter new PIN (optional)">
+          <small style="color: var(--text-muted); font-size: 0.78rem;">Leave blank to keep your existing PIN.</small>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <i class="fas fa-save"></i> Save Settings
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Product Edit Modal (Allows Photo change, Price change, Quantity change) -->
+  <div class="modal-overlay" id="productEditModal">
+    <div class="modal-box" style="max-width: 620px;">
+      <div class="modal-header">
+        <h3 id="modalProductTitle">Edit Attar Product</h3>
+        <button class="close-btn" onclick="closeProductModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="productEditForm" onsubmit="saveProductChanges(event)">
+          <input type="hidden" id="editProdId">
+
+          <label class="input-label" for="editProdName">Attar Title *</label>
+          <input type="text" id="editProdName" class="input-control" required>
+
+          <div class="form-row">
+            <div>
+              <label class="input-label" for="editProdCategory">Category</label>
+              <select id="editProdCategory" class="input-control">
+                <option value="oudh">Oudh & Woody</option>
+                <option value="rose">Rose & Floral</option>
+                <option value="musk">Musk & Amber</option>
+                <option value="fresh">Fresh & Spicy</option>
+              </select>
+            </div>
+            <div>
+              <label class="input-label" for="editProdBadge">Badge / Label</label>
+              <input type="text" id="editProdBadge" class="input-control" placeholder="e.g. Bestseller, Royal Grade">
+            </div>
+          </div>
+
+          <label class="input-label" for="editProdNotes">Scent Accords / Notes</label>
+          <input type="text" id="editProdNotes" class="input-control" placeholder="Top, Heart & Base notes">
+
+          <div class="form-row">
+            <div>
+              <label class="input-label" for="editProdPrice6ml">Price for 6ml (₹) *</label>
+              <input type="number" id="editProdPrice6ml" class="input-control" required min="1">
+            </div>
+            <div>
+              <label class="input-label" for="editProdPrice12ml">Price for 12ml (₹) *</label>
+              <input type="number" id="editProdPrice12ml" class="input-control" required min="1">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label class="input-label" for="editProdStockQty">Available Stock Quantity *</label>
+              <input type="number" id="editProdStockQty" class="input-control" required min="0">
+            </div>
+            <div>
+              <label class="input-label" for="editProdInStock">Stock Status</label>
+              <select id="editProdInStock" class="input-control">
+                <option value="true">In Stock (Active)</option>
+                <option value="false">Out of Stock</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- PHOTO CHANGE (Upload File or Enter URL) -->
+          <div style="background: var(--bg-tertiary); padding: 16px; border-radius: var(--radius-sm); margin-bottom: 16px; border: 1px dashed var(--accent-warm-beige);">
+            <label class="input-label" style="margin-bottom: 8px;">Product Photo (Upload or Change URL)</label>
+            
+            <div style="display: flex; gap: 14px; align-items: center; margin-bottom: 10px;">
+              <img id="editImagePreview" src="images/oudh.jpg" alt="Preview" style="width: 70px; height: 70px; object-fit: cover; border-radius: 6px; border: 1px solid #CCC;">
+              <div style="flex: 1;">
+                <input type="file" id="editImageFile" accept="image/*" onchange="previewUploadedImage(event)" style="font-size: 0.85rem; margin-bottom: 6px;">
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Choose a photo from your computer or phone.</div>
+              </div>
+            </div>
+
+            <label class="input-label" for="editImageUrl" style="font-size: 0.8rem;">Or Enter Image URL Path:</label>
+            <input type="text" id="editImageUrl" class="input-control" style="margin-bottom: 0;" placeholder="images/oudh.jpg or https://...">
+          </div>
+
+          <label class="input-label" for="editProdDesc">Description</label>
+          <textarea id="editProdDesc" class="input-control" rows="2" placeholder="Fragrance story and scent profile"></textarea>
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+            <i class="fas fa-check"></i> Save Product Changes
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle" style="color: var(--accent-gold);"></i>
+    <span id="toastMsg">Action completed!</span>
+  </div>
+
+  <!-- Admin JavaScript -->
+  <script src="admin.js"></script>
+</body>
+</html>
